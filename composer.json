@@ -1,0 +1,43 @@
+{
+    "name": "sprintcube/cakephp-gcp",
+    "description": "GCP plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "gcp", "logging", "logs", "plugin"],
+	"homepage": "https://github.com/sprintcube/cakephp-gcp",
+    "license": "MIT",
+    "authors": [
+		{
+			"name": "Narendra Vaghela",
+			"homepage": "https://www.sprintcube.com",
+			"role": "Maintainer"
+		},
+		{
+			"name": "Community Contributors",
+			"homepage": "https://github.com/sprintcube/cakephp-gcp/graphs/contributors"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/sprintcube/cakephp-gcp/issues",
+		"source": "https://github.com/sprintcube/cakephp-gcp"
+	},
+    "require": {
+        "php": ">=7.2",
+        "ext-bcmath": "*",
+        "cakephp/cakephp": "~4.2.0",
+        "google/cloud-logging": "^1.21"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5 || ^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "GCP\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GCP\\Test\\": "tests/",
+            "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
+        }
+    }
+}
