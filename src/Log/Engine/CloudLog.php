@@ -1,12 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * GCP Plugin for CakePHP
+ * Copyright (c) SprintCube (https://www.sprintcube.com)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.md
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright Copyright (c) SprintCube (https://www.sprintcube.com)
+ * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * @link      https://github.com/sprintcube/cakephp-gcp
+ * @since     1.0.0
+ */
+
 namespace GCP\Log\Engine;
 
-use Cake\Core\Configure;
 use Cake\Log\Engine\BaseLog;
-use Google\Cloud\Logging\LoggingClient;
-use InvalidArgumentException;
+use GCP\Utils\GoogleCloudClients;
 
+/**
+ * Writes logs to Google Stackdriver Logging.
+ */
 class CloudLog extends BaseLog
 {
 
@@ -19,7 +36,7 @@ class CloudLog extends BaseLog
 
     /**
      * __construct method
-     * 
+     *
      * Constructs a new Google Cloud Logger.
      *
      * @param array $options Configuration array
@@ -27,24 +44,7 @@ class CloudLog extends BaseLog
     public function __construct($options = [])
     {
         parent::__construct($options);
-
-        $projectId = $this->getConfig('projectId');
-        if (empty($projectId)) {
-            $projectId = Configure::read('GCP.projectId');
-            if (empty($projectId)) {
-                throw new InvalidArgumentException('You must set `projectId` to use Cloud Logging');
-            }
-        }
-
-        $keyFilePath = $this->getConfig('keyFilePath');
-        if (empty($keyFilePath)) {
-            $keyFilePath = Configure::read('GCP.keyFilePath');
-        }
-
-        $logginClient = new LoggingClient([
-            'projectId' => $projectId,
-            'keyFilePath' => !empty($keyFilePath) ? $keyFilePath : '',
-        ]);
+        $logginClient = GoogleCloudClients::getLoggingClient();
         $this->logger = $logginClient->psrLogger('app', ['batchEnabled' => true]);
     }
 

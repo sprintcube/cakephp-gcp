@@ -2,7 +2,7 @@
     "name": "sprintcube/cakephp-gcp",
     "description": "GCP plugin for CakePHP",
     "type": "cakephp-plugin",
-    "keywords": ["cakephp", "gcp", "logging", "logs", "plugin"],
+    "keywords": ["cakephp", "gcp", "plugin"],
 	"homepage": "https://github.com/sprintcube/cakephp-gcp",
     "license": "MIT",
     "authors": [
@@ -23,8 +23,9 @@
     "require": {
         "php": ">=7.2",
         "ext-bcmath": "*",
-        "cakephp/cakephp": "~4.2.0",
-        "google/cloud-logging": "^1.21"
+        "cakephp/cakephp": "^4.0.0",
+        "google/cloud-logging": "^1.24",
+        "google/cloud-tasks": "^1.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5 || ^9.3"
